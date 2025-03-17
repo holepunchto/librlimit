@@ -1,11 +1,11 @@
 #ifndef RLIMIT_H
 #define RLIMIT_H
 
-#include <stdint.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include <stdint.h>
 
 typedef int64_t rlimit_value_t;
 
