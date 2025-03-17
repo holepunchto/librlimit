@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "librlimit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holepunchto/librlimit.git"
+  },
+  "author": "Holepunch",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/holepunchto/librlimit/issues"
+  },
+  "homepage": "https://github.com/holepunchto/librlimit#readme"
+}
