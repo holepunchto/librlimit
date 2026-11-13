@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.25)
+cmake_minimum_required(VERSION 4.0)
 
 project(rlimit C)
+
+get_property(shared GLOBAL PROPERTY TARGET_SUPPORTS_SHARED_LIBS)
 
 add_library(rlimit OBJECT)
 
@@ -8,7 +10,7 @@ set_target_properties(
   rlimit
   PROPERTIES
   C_STANDARD 99
-  POSITION_INDEPENDENT_CODE ON
+  POSITION_INDEPENDENT_CODE ${shared}
 )
 
 target_sources(
@@ -37,20 +39,22 @@ target_include_directories(
     include
 )
 
-add_library(rlimit_shared SHARED)
+if(shared)
+  add_library(rlimit_shared SHARED)
 
-set_target_properties(
-  rlimit_shared
-  PROPERTIES
-  OUTPUT_NAME rlimit
-  WINDOWS_EXPORT_ALL_SYMBOLS ON
-)
+  set_target_properties(
+    rlimit_shared
+    PROPERTIES
+    OUTPUT_NAME rlimit
+    WINDOWS_EXPORT_ALL_SYMBOLS ON
+  )
 
-target_link_libraries(
-  rlimit_shared
-  PUBLIC
-    rlimit
-)
+  target_link_libraries(
+    rlimit_shared
+    PUBLIC
+      rlimit
+  )
+endif()
 
 add_library(rlimit_static STATIC)
 
@@ -67,7 +71,11 @@ target_link_libraries(
     rlimit
 )
 
-install(TARGETS rlimit_shared rlimit_static)
+install(TARGETS rlimit_static)
+
+if(shared)
+  install(TARGETS rlimit_shared)
+endif()
 
 install(FILES include/rlimit.h DESTINATION include)
 
