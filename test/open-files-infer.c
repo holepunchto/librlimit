@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <inttypes.h>
 #include <stdio.h>
 
 #include "../include/rlimit.h"
@@ -13,5 +14,5 @@ main() {
   e = rlimit_get(rlimit_open_files, &limit);
   assert(e == 0);
 
-  printf("limit=%lld\n", limit);
+  printf("limit=%" PRId64 "\n", limit);
 }
