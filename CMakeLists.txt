@@ -25,6 +25,12 @@ if(WIN32)
     PRIVATE
       src/win32.c
   )
+elseif(CMAKE_SYSTEM_NAME STREQUAL "FreeRTOS")
+  target_sources(
+    rlimit
+    PRIVATE
+      src/freertos.c
+  )
 else()
   target_sources(
     rlimit
