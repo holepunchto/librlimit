@@ -2,7 +2,7 @@
 #include <inttypes.h>
 #include <stdio.h>
 
-#include "../include/rlimit.h"
+#include <rlimit.h>
 
 int
 main() {
